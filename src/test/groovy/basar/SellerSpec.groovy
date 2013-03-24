@@ -4,34 +4,41 @@ import domain.Basar
 import org.mockito.ArgumentCaptor
 import org.springframework.beans.factory.annotation.Autowired
 
-import static org.mockito.Mockito.verify
-import static org.mockito.Mockito.when
+import static org.mockito.Mockito.*
+import static org.mockito.BDDMockito.*
 
 class SellerSpec extends BasarWebSpec {
 
     @Autowired
-    Basar basarMock
+    Basar basar
+    
+    ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User)
 
-    def "create a new seller"() {
+    def "create a new seller"(User seller) {
         given:
-            def user = [basarNumber: "100", name: "Christian"]
-            when(basarMock.findAllUsers()).thenReturn([])
+            reset(basar)
+            given(basar.findAllUsers()).willReturn([])
         when:
             go "/static/sellers.html"
             waitFor { $("#newUser") }
             $("#newUser").click()
             waitFor { $("#basarNumber") }
-            $("#basarNumber").value(user.basarNumber)
-            $("#name").value(user.name)
+            $("#basarNumber").value(seller.basarNumber)
+            $("#name").value(seller.name)
+            $("#lastname").value(seller.lastname)
+            $("#email").value(seller.email)
             $("#saveUser").click()
             waitFor { $("#successfullCreated") }
         then:
-            ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User)
-            verify(basarMock).saveUser(userArgumentCaptor.capture())
-        and:
-            User newUser = userArgumentCaptor.value
-            newUser.basarNumber == user.basarNumber
-            newUser.name == user.name
+            verify(basar).saveUser(userCaptor.capture())
+            User newUser = userCaptor.value
+            newUser.basarNumber == seller.basarNumber
+            newUser.name == seller.name
+            newUser.lastname == seller.lastname
+            newUser.email == seller.email
+        where:
+            seller << [new User(basarNumber: "100", name: "Christian", lastname: "", email: ""), 
+                       new User(basarNumber: "ABC", name: "",          lastname: "", email: "")]
     }
 
 }
