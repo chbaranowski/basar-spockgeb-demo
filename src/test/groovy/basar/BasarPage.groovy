@@ -4,7 +4,7 @@ import geb.Page;
 
 class BasarPage extends Page {
 	
-	static url = "http://localhost:8881/static/basar.html"
+	static url = "/static/basar.html"
 	
 	static at = { title == "Basar" }
 	
@@ -14,10 +14,17 @@ class BasarPage extends Page {
 		
 		addButton { $("#addCartItem") }
 		
-		basarNumber { i -> 
-			waitFor { $("td")[i] }
-			$("td")[0].text() 
+		sum { $("#sum").text() }
+		
+		basarNumber(wait:true) { attr ->
+			 def index = attr.cartItem * 4
+			 $("td")[index].text()
 		}
+		
+		price(wait:true) { attr ->
+			def index = (attr.cartItem * 4) + 1
+			$("td")[index].text()
+	   }
 		
 	}
 

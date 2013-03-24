@@ -20,7 +20,7 @@ class JavaScriptDemoSpec extends BasarWebSpec {
                 new User(id: 2L, basarNumber: "101", name: "Martin"),
             ])
         when:
-            go "$basarUrl/static/sellers.html"
+            go "/static/sellers.html"
             waitFor { $("#newUser") }
             def users = js.exec('''
                         var users = []

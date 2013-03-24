@@ -17,7 +17,7 @@ class SellerSpec extends BasarWebSpec {
             def user = [basarNumber: "100", name: "Christian"]
             when(basarMock.findAllUsers()).thenReturn([])
         when:
-            go "$basarUrl/static/sellers.html"
+            go "/static/sellers.html"
             waitFor { $("#newUser") }
             $("#newUser").click()
             waitFor { $("#basarNumber") }
