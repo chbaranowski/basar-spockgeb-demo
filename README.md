@@ -24,7 +24,7 @@ When the demo webapp is running, the webapp provides two simple pages under
 
 ## Slides
 
-<iframe src="http://de.slideshare.net/slideshow/embed_code/17517425" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="http://de.slideshare.net/tux2323/spock-and-geb-17517425" title="Spock and Geb" target="_blank">Spock and Geb</a> </strong> from <strong><a href="http://de.slideshare.net/tux2323" target="_blank">Christian Baranowski</a></strong> </div>
+<iframe src="http://de.slideshare.net/tux2323/slideshelf" width="615px" height="470px" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:none;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
  
 ## Links
 
