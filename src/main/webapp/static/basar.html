@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+<head>
+    <title>Basar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/application.css" rel="stylesheet" media="screen">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<div class="row-fluid">
+    <div class="span2">
+        <p>&nbsp;</p>
+    </div>
+    <div class="span8">
+        <h4>Gesamt: <span id="total">0,00</span> Euro</h4>
+        <hr/>
+        <h2><span id="sum">0,00</span> Euro</h2>
+        <hr/>
+        <div id="messageBox">
+        </div>
+        <form class="form-horizontal">
+            <div id="basarNumberGroup" class="control-group">
+                <label class="control-label" for="basarNumber">Basar Nummer</label>
+
+                <div class="controls">
+                    <input type="text" id="basarNumber" name="basarNumber" placeholder="">
+                </div>
+            </div>
+            <div id="priceGroup" class="control-group">
+                <label class="control-label" for="price">Preis</label>
+
+                <div class="controls">
+                    <input type="text" id="price" name="price" placeholder="">
+                </div>
+            </div>
+            <div id="descriptionGroup" class="control-group">
+                <label class="control-label" for="description">Beschreibung</label>
+
+                <div class="controls">
+                    <input type="text" id="description" name="description" placeholder="">
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <a id="addCartItem" class="btn">Add</a>
+                </div>
+            </div>
+        </form>
+        <hr/>
+
+        <div class="rightCell">
+            <a id="buy" class="btn btn-large btn-success">Bezahlt</a>
+            <a id="storno" class="btn btn-large btn-danger">Storno</a>
+        </div>
+
+        <hr/>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Basar Number</th>
+                <th>Preis</th>
+                <th>Beschreibung</th>
+                <th class="rightCell">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody id="cartBody">
+            </tbody>
+        </table>
+    </div>
+    <div class="span2">
+        <p>&nbsp;</p>
+    </div>
+</div>
+
+<div id="forms">
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/handlebars.js"></script>
+<script src="js/basar.js"></script>
+
+<script id="cartTemplate" type="text/x-handlebars-template">
+    {{#each cartItems}}
+    <tr>
+        <td>{{basarNumber}}</td>
+        <td>{{price}}</td>
+        <td>{{description}}</td>
+        <td class="rightCell">
+            <div class="btn-group">
+                {{#each links}}
+                <button class="btn deleteCartItemButton" value="{{href}}">
+                    <i class="icon-trash"></i>
+                </button>
+                {{/each}}
+            </div>
+        </td>
+    </tr>
+    {{/each}}
+</script>
+
+<script id="errorsTemplate" type="text/x-handlebars-template">
+    <ul>
+    {{#each errors}}
+        <li class="text-error">{{description}}</li>
+    {{/each}}
+    </ul>
+    <hr/>
+</script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+apply plugin: "groovy"
+apply plugin: "java"
+apply plugin: "war"
+apply plugin: "application"
+apply plugin: "idea"
+
+ext.sourceEncoding      = "UTF-8"
+ext.gradleScriptDir   = "${rootProject.projectDir}/gradle"
+
+ext.springVersion   = "3.2.2.RELEASE"
+ext.jettyVersion    = "8.1.8.v20121106"
+ext.groovyVersion   = "2.0.6"
+ext.gebVersion      = "0.7.2"
+ext.seleniumVersion = "2.31.0"
+
+ext.drivers = ["firefox"]
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+apply from:     "${gradleScriptDir}/eclipse.gradle"
+
+mainClassName = "runner.BasarApplication"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    groovy("org.codehaus.groovy:groovy-all:${groovyVersion}")
+
+    // Spring Framework Dependencies
+    compile "org.springframework:spring-web:$springVersion",
+            "org.springframework:spring-webmvc:$springVersion",
+            "org.springframework:spring-orm:$springVersion",
+            "org.springframework:spring-aspects:$springVersion"
+
+    // Spring Data and Hibernate JPA
+    compile "org.springframework.data:spring-data-jpa:1.1.0.RELEASE",
+            "org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.0.Final"
+    runtime "org.hibernate:hibernate-entitymanager:4.1.4.Final"
+    testCompile "org.hibernate:hibernate-entitymanager:4.1.4.Final"
+
+    compile("org.eclipse.jetty:jetty-server:${jettyVersion}")
+    compile("org.eclipse.jetty:jetty-webapp:${jettyVersion}")
+    testCompile('org.spockframework:spock-core:0.7-groovy-2.0')
+
+    // HSQL DB
+    runtime "org.hsqldb:hsqldb:2.2.8"
+
+    // SLF4J
+    runtime "org.slf4j:slf4j-log4j12:1.6.6"
+
+    // Jackson for JSON
+    runtime "com.fasterxml.jackson.core:jackson-databind:2.1.4"
+
+    // Spring hateoas
+    compile "org.springframework.hateoas:spring-hateoas:0.4.0.RELEASE"
+    compile "org.springframework.plugin:spring-plugin-core:0.8.0.RELEASE"
+    
+    // Validation 
+    compile "javax.validation:validation-api:1.0.0.GA"
+    compile "org.hibernate:hibernate-validator:4.2.0.Final"
+
+    // Selenium Drivers
+    drivers.each { driver ->
+        testCompile "org.seleniumhq.selenium:selenium-$driver-driver:$seleniumVersion"
+    }
+
+    testCompile "org.codehaus.geb:geb-core:$gebVersion"
+    testCompile "org.mockito:mockito-all:1.9.5"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.4'
+}

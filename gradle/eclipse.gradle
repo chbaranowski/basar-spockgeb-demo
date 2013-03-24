@@ -1,0 +1,26 @@
+apply plugin: "eclipse-wtp"
+
+eclipseJdt << {
+  File resourcesPrefsFile = file('.settings/org.eclipse.core.resources.prefs')
+  resourcesPrefsFile.write('eclipse.preferences.version=1\n')
+  resourcesPrefsFile.append("encoding/<project>=${project.sourceEncoding}")
+}
+
+eclipse {
+  classpath {
+    
+    containers.remove("org.eclipse.jdt.launching.JRE_CONTAINER")
+    containers.add("org.eclipse.jdt.launching.JRE_CONTAINER")
+    
+    file {
+      withXml { xml ->
+        def node = xml.asNode()
+        def webContainer = node.find { 'org.eclipse.jst.j2ee.internal.web.container'  == it.@path }
+        if(webContainer) {
+          node.remove(webContainer)
+          node.appendNode( 'classpathentry', [ kind: 'con', path: 'org.eclipse.jst.j2ee.internal.web.container', exported: 'true'])
+        }
+      }
+    }
+  }
+}
