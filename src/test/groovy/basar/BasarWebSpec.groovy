@@ -16,13 +16,13 @@ abstract class BasarWebSpec extends GebSpec {
     }
 
     def setup() {
-		browser.baseUrl = basarUrl
+        browser.baseUrl = basarUrl
         def applicationContext = webapp.webApplicationContext
         assert applicationContext != null
         getClass().declaredFields.each { field ->
             if (field.getAnnotation(Autowired)) {
                 def bean = applicationContext.getBean(field.type)
-				assert bean != null
+                assert bean != null
                 field.setAccessible(true)
                 field.set(this, bean)
             }
@@ -36,9 +36,8 @@ abstract class BasarWebSpec extends GebSpec {
     def getBasarUrl() {
         "http://localhost:${webapp.port}"
     }
-	
-	def enviorment() {
-		"mocking"
-	}
-	
+
+    def enviorment() {
+        "mocking"
+    }
 }
