@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 
 import static org.mockito.Mockito.*
 
-class JavaScriptDemoSpec extends BasarWebSpec {
+class JavaScriptDemoSpec extends BasarWebSpecification {
 
     @Autowired
     Basar basarMock

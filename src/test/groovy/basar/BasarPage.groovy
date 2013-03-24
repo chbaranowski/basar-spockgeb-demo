@@ -15,14 +15,16 @@ class BasarPage extends Page {
         addButton { $("#addCartItem") }
 
         sum { $("#sum").text() }
+        
+        cartSize { $("tr").size() - 1}
 
         basarNumber(wait:true) { attr ->
-            def index = attr.cartItem * 4
+            def index = (attr.cartItem -1) * 4
             $("td")[index].text()
         }
 
         price(wait:true) { attr ->
-            def index = (attr.cartItem * 4) + 1
+            def index = ((attr.cartItem -1) * 4) + 1
             $("td")[index].text()
         }
     }

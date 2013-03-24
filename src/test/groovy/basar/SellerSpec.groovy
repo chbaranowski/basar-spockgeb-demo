@@ -4,16 +4,18 @@ import domain.Basar
 import org.mockito.ArgumentCaptor
 import org.springframework.beans.factory.annotation.Autowired
 
+import spock.lang.Unroll;
+
 import static org.mockito.Mockito.*
 import static org.mockito.BDDMockito.*
 
-class SellerSpec extends BasarWebSpec {
+class SellerSpec extends BasarWebSpecification {
 
     @Autowired
     Basar basar
-    
-    ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User)
 
+    ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User)
+    
     def "create a new seller"(User seller) {
         given:
             reset(basar)

@@ -18,26 +18,26 @@ import data.UserRepository;
 
 import static org.mockito.Mockito.*;
 
-class BasarSpec extends BasarWebSpec {
+class BasarSpec extends BasarWebSpecification {
 
     User testUser
 
     @Autowired
-    UserRepository userRepository
+    Basar basar
 
     @Override
     def enviorment() { "production" }
 
     def setup() {
-        testUser = userRepository.save(new User(basarNumber: "100"))
+        testUser = new User(basarNumber: "100")
+        basar.saveUser(testUser)
     }
 
     def cleanup() {
-        userRepository.delete(testUser.getId())
+        basar.deleteUserWithId(testUser.getId())
     }
 
-    @Unroll
-    def "buy some articles with number='#numberValue' and price='#priceValue'"(String numberValue, String priceValue, String sumValue) {
+    def "add article to cart with number='#numberValue' and price='#priceValue'"(String numberValue, String priceValue, String sumValue) {
         given:
             to BasarPage
         when: "add a article into the cart"
@@ -47,8 +47,8 @@ class BasarSpec extends BasarWebSpec {
             }
             addButton.click()
         then: "the article should be in the cart"
-            basarNumber(cartItem: 0)    == numberValue
-            price(cartItem: 0)          == sumValue
+            basarNumber(cartItem: 1) == numberValue
+            price(cartItem: 1) == sumValue
             sum == sumValue
         where:
             numberValue   | priceValue   ||   sumValue

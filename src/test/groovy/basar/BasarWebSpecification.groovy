@@ -5,7 +5,7 @@ import geb.GebSpec;
 import org.springframework.beans.factory.annotation.Autowired
 import runner.Webapp
 
-abstract class BasarWebSpec extends GebSpec {
+abstract class BasarWebSpecification extends GebSpec {
 
     static webapp
 
