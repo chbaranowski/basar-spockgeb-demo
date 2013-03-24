@@ -24,7 +24,8 @@ When the demo webapp is running, the webapp provides two simple pages under
 
 ## Slides
 
-<iframe src="http://de.slideshare.net/tux2323/slideshelf" width="615px" height="470px" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:none;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+There are a few slides for the demo on slideshare:
+http://de.slideshare.net/tux2323/spock-and-geb-17517425
  
 ## Links
 
