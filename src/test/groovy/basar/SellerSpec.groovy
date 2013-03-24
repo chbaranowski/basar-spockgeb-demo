@@ -12,8 +12,6 @@ class SellerSpec extends BasarWebSpec {
     @Autowired
     Basar basarMock
 
-    Basar basar
-
     def "create a new seller"() {
         given:
             def user = [basarNumber: "100", name: "Christian"]
