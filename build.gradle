@@ -70,6 +70,29 @@ dependencies {
 
     testCompile "org.codehaus.geb:geb-core:$gebVersion"
     testCompile "org.mockito:mockito-all:1.9.5"
+    
+    testCompile "info.cukes:cucumber-java:1.1.3"
+    testCompile "info.cukes:cucumber-junit:1.1.3"
+    testCompile "info.cukes:cucumber-groovy:1.1.3"
+    
+    testCompile "junit:junit:4.11"
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['-f', 'pretty', '--glue', 'gradle.cucumber', 'src/test/resources']
+        }
+    }
 }
 
 task wrapper(type: Wrapper) {
