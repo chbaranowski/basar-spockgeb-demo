@@ -22,4 +22,6 @@
         </property>
     </bean>
     
+    <bean class="spring.test.utils.MockHttp" />
+    
 </beans>

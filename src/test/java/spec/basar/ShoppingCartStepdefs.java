@@ -38,8 +38,6 @@ public class ShoppingCartStepdefs {
             testUser.setBasarNumber("100");
             basar.saveUser(testUser);
         }
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
     }
     
     @Given("^empty shopping cart$")
