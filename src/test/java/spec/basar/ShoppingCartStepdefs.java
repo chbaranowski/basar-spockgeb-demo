@@ -2,6 +2,8 @@ package spec.basar;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -17,7 +19,7 @@ import cucumber.api.java.en.When;
 import data.User;
 import domain.Basar;
 
-public class BasarStepdefs {
+public class ShoppingCartStepdefs {
     
     @Autowired
     ShoppingController shoppingController;
@@ -40,7 +42,7 @@ public class BasarStepdefs {
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
     }
     
-    @Given("^Empty shopping cart$")
+    @Given("^empty shopping cart$")
     public void Empty_shopping_cart() throws Throwable {
         shoppingCart.clear();
     }
@@ -56,6 +58,18 @@ public class BasarStepdefs {
     @Then("^total price should be \"([^\"]*)\"$")
     public void total_price_should_be(String expectedTotalPrice) throws Throwable {
         assertEquals(expectedTotalPrice, shoppingController.getShoppingCart().getSum());
+    }
+    
+    public static class CartItem {
+        String number;
+        String price;
+    }
+    
+    @When("^add artiles:$")
+    public void add_artiles(List<CartItem> items) throws Throwable {
+        for (CartItem cartItem : items) {
+            add_article_with_basarnumber_and_price_Euro(cartItem.number, cartItem.price);
+        }
     }
     
 }
