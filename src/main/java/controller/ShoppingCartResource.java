@@ -13,26 +13,29 @@ public class ShoppingCartResource implements Serializable {
     Iterable<CartResource> cartItems;
 
     public Iterable<CartResource> getCartItems() {
-	return cartItems;
+        return cartItems;
     }
 
     public void setCartItems(Iterable<CartResource> cartItems) {
-	this.cartItems = cartItems;
+        this.cartItems = cartItems;
     }
 
     public String getSum() {
-	return sum;
+        return sum;
     }
 
     public void setSum(String sum) {
-	this.sum = sum;
+        this.sum = sum;
     }
 
     public String getTotal() {
-	return total;
+        return total;
     }
 
     public void setTotal(String total) {
-	this.total = total;
+        this.total = total;
     }
+    
+    
+    
 }

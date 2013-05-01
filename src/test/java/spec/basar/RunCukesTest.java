@@ -4,7 +4,9 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@Cucumber.Options(format = { 
+@Cucumber.Options(
+  format = { 
         "pretty", "html:target/cucumber-html-report",
-        "json-pretty:target/cucumber-json-report.json" })
+        "json-pretty:target/cucumber-json-report.json" },
+  glue = {"spec.basar"})
 public class RunCukesTest {}

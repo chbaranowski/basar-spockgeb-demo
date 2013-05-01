@@ -9,6 +9,7 @@ bin/
 .project
 .settings
 .groovy
+.springBeans
 
 # IntelliJ
 .idea/

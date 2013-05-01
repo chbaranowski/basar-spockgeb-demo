@@ -12,6 +12,7 @@ ext.jettyVersion    = "8.1.8.v20121106"
 ext.groovyVersion   = "2.0.6"
 ext.gebVersion      = "0.7.2"
 ext.seleniumVersion = "2.31.0"
+ext.cucumberVersion = "1.1.2"
 
 ext.drivers = ["firefox"]
 
@@ -70,11 +71,13 @@ dependencies {
 
     testCompile "org.codehaus.geb:geb-core:$gebVersion"
     testCompile "org.mockito:mockito-all:1.9.5"
-    
-    testCompile "info.cukes:cucumber-java:1.1.2"
-    testCompile "info.cukes:cucumber-junit:1.1.2"
-    
+    testCompile "org.springframework:spring-test:$springVersion"
     testCompile "junit:junit:4.11"
+    
+    testCompile "info.cukes:cucumber-java:$cucumberVersion"
+    testCompile "info.cukes:cucumber-junit:$cucumberVersion"
+    testCompile "info.cukes:cucumber-spring:$cucumberVersion"
+    
 }
 
 configurations {

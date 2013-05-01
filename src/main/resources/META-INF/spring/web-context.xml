@@ -9,7 +9,7 @@
 
     <mvc:annotation-driven/>
     
-    <mvc:resources mapping="/static/**" 	location ="/static/"	/>
+    <mvc:resources mapping="/static/**"     location ="/static/"	/>
 
     <context:component-scan scoped-proxy="targetClass" base-package="controller"/>
 
