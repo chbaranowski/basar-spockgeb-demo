@@ -1,61 +1,48 @@
 package spec.basar;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
-import controller.CartResource;
-import controller.ShoppingCart;
-import controller.ShoppingController;
+import runner.BasarApplication;
+import runner.Webapp;
+
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import data.User;
-import domain.Basar;
 
 public class ShoppingCartStepdefs {
     
-    @Autowired
-    ShoppingController shoppingController;
+    Webapp webapp;
     
-    @Autowired
-    ShoppingCart shoppingCart;
-    
-    @Autowired
-    Basar basar;
+    WebDriver driver;
     
     @Before
-    public void before() {
-        User testUser = basar.findByBasarNumber("100");
-        if(testUser == null) {
-            testUser = new User();
-            testUser.setBasarNumber("100");
-            basar.saveUser(testUser);
-        }
+    public void start() throws Exception {
+        webapp = new Webapp(8881);
+        webapp.start();
+        driver = new FirefoxDriver();
+    }
+    
+    @After
+    public void stop() throws Exception {
+        webapp.stop();
     }
     
     @Given("^empty shopping cart$")
     public void Empty_shopping_cart() throws Throwable {
-        shoppingCart.clear();
+        
     }
     
     @When("^add article with basarnumber \"([^\"]*)\" and price \"([^\"]*)\" Euro$")
     public void add_article_with_basarnumber_and_price_Euro(String basarNumber, String price) throws Throwable {
-        CartResource cartItem = new CartResource();
-        cartItem.setBasarNumber(basarNumber);
-        cartItem.setPrice(price);
-        shoppingController.addItemToCart(cartItem );
     }
 
     @Then("^total price should be \"([^\"]*)\"$")
     public void total_price_should_be(String expectedTotalPrice) throws Throwable {
-        assertEquals(expectedTotalPrice, shoppingController.getShoppingCart().getSum());
     }
     
     public static class CartItem {
