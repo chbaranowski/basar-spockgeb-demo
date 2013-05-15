@@ -2,21 +2,19 @@ package basar;
 
 import static org.junit.Assert.*;
 
-import java.util.concurrent.TimeUnit;
-
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.common.base.Function;
@@ -29,20 +27,22 @@ public class BasarTest {
 
     static Webapp webapp;
     
-    WebDriver driver;
+    static WebDriver driver;
     
-    Wait<WebDriver> wait;
-
     @BeforeClass
     public static void startApp() throws Exception {
         webapp = new Webapp();
         webapp.start();
+        driver = new FirefoxDriver();
+       
     }
     
     @AfterClass
     public static void stopApp() throws Exception {
         webapp.stop();
         webapp = null;
+        driver.quit();
+        driver = null;
     }
     
     @Before
@@ -51,33 +51,17 @@ public class BasarTest {
         ResponseEntity<UserResource[]> entity = rest.getForEntity("http://localhost:8881/users/", UserResource[].class);
         UserResource[] users = entity.getBody();
         for (UserResource userResource : users) {
-            rest.delete(userResource.getLink("self").getRel());
+            rest.delete(userResource.getLink("self").getHref());
         }
-        
-        driver = new FirefoxDriver();
-        driver.get("http://localhost:8881/static/sellers.html");
-        driver.findElement(By.id("newUser")).click();
-        driver.findElement(By.id("basarNumber")).sendKeys("100");
-        driver.findElement(By.id("name")).sendKeys("Test");
-        driver.findElement(By.id("lastname")).sendKeys("Tester");
-        driver.findElement(By.id("email")).sendKeys("Test@Test,de");
-        driver.findElement(By.id("saveUser")).click();
-        
-        wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(30, TimeUnit.SECONDS)
-                    .pollingEvery(200, TimeUnit.MILLISECONDS)
-                    .ignoring(NoSuchElementException.class);
-        
-        wait.until(new Function<WebDriver, WebElement>() {
-            public WebElement apply(WebDriver driver) {
-                return driver.findElement(By.cssSelector("td"));
-            }
-        });
-    }
-    
-    @After
-    public void cleanup() {
-        driver.quit();
+        UserResource testUser = new UserResource();
+        testUser.setBasarNumber("100");
+        MultiValueMap<String, String> userForm = new LinkedMultiValueMap<String, String>();
+        userForm.add("basarNumber", "100");
+        userForm.add("email", "");
+        userForm.add("lastname", "");
+        userForm.add("name", "");
+        rest.postForObject("http://localhost:8881/users/", userForm, UserResource.class);
+        driver.manage().deleteAllCookies();
     }
     
     @Test
@@ -89,6 +73,7 @@ public class BasarTest {
         driver.findElement(By.id("price")).sendKeys("10,50");
         driver.findElement(By.id("addCartItem")).click();
         
+        Wait<WebDriver> wait = new WebDriverWait(driver, 3);
         WebElement sum = wait.until(new Function<WebDriver, WebElement>() {
             public WebElement apply(WebDriver driver) {
                 WebElement sum = driver.findElement(By.id("sum"));
