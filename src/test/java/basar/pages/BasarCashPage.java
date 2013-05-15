@@ -13,9 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.LoadableComponent;
-import org.openqa.selenium.support.ui.Wait;
 
-import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 
 public class BasarCashPage extends LoadableComponent<BasarCashPage> {
