@@ -37,10 +37,14 @@ public class Webapp {
         }
     }
 
-    public void stop() throws Exception {
+    public void stop() {
         if (isRunning) {
             webApplicationContext = null;
-            server.stop();
+            try {
+                server.stop();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             server = null;
             isRunning = false;
         }

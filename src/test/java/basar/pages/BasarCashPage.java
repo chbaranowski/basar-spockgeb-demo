@@ -30,6 +30,8 @@ public class BasarCashPage extends LoadableComponent<BasarCashPage> {
     
     WebElement description;
     
+    WebElement storno;
+    
     public static BasarCashPage get(WebDriver driver) {
         return new BasarCashPage(driver).get();
     }
@@ -80,6 +82,48 @@ public class BasarCashPage extends LoadableComponent<BasarCashPage> {
                 if (actualCartCount > cartCount) {
                     return true;
                 } else if(getErrorMessages().size() > 0) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        });
+        return this;
+    }
+    
+    public BasarCashPage storno(){
+        storno.click();
+        FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(3, TimeUnit.SECONDS)
+                .pollingEvery(100, TimeUnit.MILLISECONDS)
+                .ignoring(NoSuchElementException.class);
+        wait.until(new Predicate<WebDriver>() {
+            public boolean apply(WebDriver driver) {
+                int actualCartCount = getCartCount();
+                if (actualCartCount == 0) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        });
+        return this;
+    }
+    
+    public BasarCashPage deleteCartItem(int number){
+        List<WebElement> cartElements = driver.findElements(By.cssSelector(".deleteCartItemButton"));
+        final int cartCount = getCartCount();
+        cartElements.get(number - 1).click();
+        FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(3, TimeUnit.SECONDS)
+                .pollingEvery(100, TimeUnit.MILLISECONDS)
+                .ignoring(NoSuchElementException.class);
+        wait.until(new Predicate<WebDriver>() {
+            public boolean apply(WebDriver driver) {
+                int actualCartCount = getCartCount();
+                if (actualCartCount < cartCount) {
                     return true;
                 }
                 else {

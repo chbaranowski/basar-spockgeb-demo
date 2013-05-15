@@ -7,6 +7,5 @@ import org.junit.runner.RunWith;
 @Cucumber.Options(
   format = { 
         "pretty", "html:build/cucumber-html-report",
-        "json-pretty:build/cucumber-json-report.json" },
-  glue = {"spec.basar"})
+        "json-pretty:build/cucumber-json-report.json" })
 public class RunCukesTest {}
