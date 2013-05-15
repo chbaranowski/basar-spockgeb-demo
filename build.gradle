@@ -68,6 +68,8 @@ dependencies {
     drivers.each { driver ->
         testCompile "org.seleniumhq.selenium:selenium-$driver-driver:$seleniumVersion"
     }
+    testCompile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+    testCompile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
 
     testCompile "org.codehaus.geb:geb-core:$gebVersion"
     testCompile "org.mockito:mockito-all:1.9.5"
