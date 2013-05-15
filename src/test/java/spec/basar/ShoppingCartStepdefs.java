@@ -27,14 +27,23 @@ public class ShoppingCartStepdefs {
     
     @Before
     public void start() throws Exception {
-        if(webapp == null) {
-            webapp = new Webapp(8881);
-            webapp.start();
+        if(driver == null) {
             driver = new FirefoxDriver();
             Runtime.getRuntime().addShutdownHook(new Thread() {
                 public void run() {
+                    driver.close();
                     driver.quit();
+                    driver = null;
+                }
+            });
+        }
+        if(webapp == null) {
+            webapp = new Webapp();
+            webapp.start();
+            Runtime.getRuntime().addShutdownHook(new Thread() {
+                public void run() {
                     webapp.stop();
+                    webapp = null;
                 }
             });
         }
@@ -79,6 +88,11 @@ public class ShoppingCartStepdefs {
     @Then("^total price should be \"([^\"]*)\"$")
     public void total_price_should_be(String expectedTotalPrice) throws Throwable {
         assertEquals(expectedTotalPrice, new BasarCashPage(driver).getSum());
+    }
+    
+    @Then("^the error message \"([^\"]*)\" should be shown.$")
+    public void the_error_message_should_be_shown(String msg) throws Throwable {
+        assertEquals(msg, new BasarCashPage(driver).getErrorMessages().get(0));
     }
     
     public static class CartItem {
