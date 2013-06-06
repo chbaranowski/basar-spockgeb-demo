@@ -72,6 +72,8 @@ dependencies {
 
     testCompile "org.codehaus.geb:geb-core:$gebVersion"
     testCompile "org.mockito:mockito-all:1.9.5"
+    
+    testCompile "com.github.detro.ghostdriver:phantomjsdriver:1.0.3"
 }
 
 task wrapper(type: Wrapper) {

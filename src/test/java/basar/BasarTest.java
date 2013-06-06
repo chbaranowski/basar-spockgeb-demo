@@ -1,15 +1,25 @@
 package basar;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +27,11 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import runner.Webapp;
+
 import com.google.common.base.Function;
 
 import controller.UserResource;
-
-import runner.Webapp;
 
 public class BasarTest {
 
@@ -33,8 +43,8 @@ public class BasarTest {
     public static void startApp() throws Exception {
         webapp = new Webapp();
         webapp.start();
-        driver = new FirefoxDriver();
-       
+        DesiredCapabilities cab = new DesiredCapabilities();
+        driver = new PhantomJSDriver(cab);
     }
     
     @AfterClass
@@ -44,6 +54,21 @@ public class BasarTest {
         driver.quit();
         driver = null;
     }
+    
+    @Rule
+    public TestWatcher takesScreenshotRule = new TestWatcher() {
+        
+        @Override
+        protected void failed(Throwable e, Description description) {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            try {
+                FileUtils.copyFile(scrFile, new File("build", "screendump.png"));
+            } catch (IOException exp) {
+                throw new RuntimeException(exp);
+            }
+        };
+    
+    };
     
     @Before
     public void setup() throws Exception {
