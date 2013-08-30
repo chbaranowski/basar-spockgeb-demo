@@ -1,7 +1,7 @@
 package basar
 
-import geb.GebSpec;
-
+import geb.bind.Bind
+import geb.spock.GebSpec
 import org.springframework.beans.factory.annotation.Autowired
 import runner.Webapp
 
@@ -39,5 +39,9 @@ abstract class BasarWebSpecification extends GebSpec {
 
     def enviorment() {
         "mocking"
+    }
+
+    Bind start(Class<Bind> bindClass) {
+        Bind.start(browser, bindClass)
     }
 }

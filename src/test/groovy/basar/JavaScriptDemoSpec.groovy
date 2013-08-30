@@ -1,13 +1,12 @@
 package basar
-
 import data.User
 import domain.Basar
-import org.openqa.selenium.firefox.FirefoxDriver
-import org.openqa.selenium.firefox.FirefoxProfile
 import org.springframework.beans.factory.annotation.Autowired
+import spock.lang.Ignore
 
-import static org.mockito.Mockito.*
+import static org.mockito.Mockito.when
 
+@Ignore
 class JavaScriptDemoSpec extends BasarWebSpecification {
 
     @Autowired
