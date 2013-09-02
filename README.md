@@ -46,3 +46,5 @@ http://de.slideshare.net/tux2323/spock-and-geb-17517425
   http://docs.spockframework.org/en/latest/
 - Geb
   http://www.gebish.org/
+- GebBind
+  https://github.com/tux2323/gebbind
