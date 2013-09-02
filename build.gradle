@@ -82,5 +82,5 @@ task wrapper(type: Wrapper) {
 task console(dependsOn: 'classes', type: JavaExec) {
     main = 'groovy.ui.Console'
     classpath = sourceSets.test.runtimeClasspath
-    args = ["script.groovy"]
+    args = ["$projectDir/src/test/script/script.groovy"]
 }
