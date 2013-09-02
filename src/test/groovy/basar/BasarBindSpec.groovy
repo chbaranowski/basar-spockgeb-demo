@@ -35,9 +35,6 @@ class BasarBindSpec extends BasarWebSpecification {
 
         then:
         basar.sum == sum
-        basar.cartContentTable.size() == 1
-        basar.cartContentTable[0][0].text() == basarNumber
-        basar.cartContentTable[0][1].text() == sum
 
         where:
         basarNumber | price  ||   sum

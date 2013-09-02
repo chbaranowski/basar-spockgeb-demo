@@ -26,9 +26,7 @@ class BasarBind extends Bind {
         }
     }
 
-    Text sum = text {
-        $('#sum')
-    }
+    Text sum = text { $('#sum') }
 
     List errors = list {
         $('.text-error')
