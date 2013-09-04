@@ -34,7 +34,8 @@ There are three demo tests:
 ## Slides
 
 There are a few slides for the demo on slideshare:
-http://de.slideshare.net/tux2323/spock-and-geb-17517425
+ * http://de.slideshare.net/tux2323/spock-and-geb-in-action
+ * http://de.slideshare.net/tux2323/spock-and-geb-17517425
  
 ## Links
 
