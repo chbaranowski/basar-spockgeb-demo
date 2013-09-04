@@ -24,7 +24,9 @@ mainClassName = "runner.BasarApplication"
 
 repositories {
     mavenCentral()
-    mavenLocal()
+    maven {
+      url "http://dl.bintray.com/tux2323/utils/"
+    }
 }
 
 dependencies {
@@ -72,7 +74,7 @@ dependencies {
     testCompile "org.gebish:geb-spock:$gebVersion"
     testCompile "org.mockito:mockito-all:1.9.5"
 
-    testCompile "com.seitenbau.utils:gebbind:0.1.0-SNAPSHOT"
+    testCompile "com.seitenbau.utils:gebbind:0.1.0"
 }
 
 task wrapper(type: Wrapper) {
