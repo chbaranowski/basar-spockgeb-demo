@@ -29,7 +29,6 @@ There are three demo tests:
  - UI integration test - https://github.com/tux2323/basar-spockgeb-demo/blob/master/src/test/groovy/basar/SellerSpec.groovy
  - n-n system test - https://github.com/tux2323/basar-spockgeb-demo/blob/master/src/test/groovy/basar/BasarSpec.groovy
  - n-n system test as stepwise test - https://github.com/tux2323/basar-spockgeb-demo/blob/master/src/test/groovy/basar/ComplexCartSpec.groovy
- - Geb JS Binding Demo - https://github.com/tux2323/basar-spockgeb-demo/blob/master/src/test/groovy/basar/JavaScriptDemoSpec.groovy  
 
 ## Slides
 
