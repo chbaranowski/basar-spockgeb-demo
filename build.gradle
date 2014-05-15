@@ -9,9 +9,9 @@ ext.gradleScriptDir   = "${rootProject.projectDir}/gradle"
 
 ext.springVersion   = "3.2.2.RELEASE"
 ext.jettyVersion    = "8.1.8.v20121106"
-ext.groovyVersion   = "2.0.6"
+ext.groovyVersion   = "2.2.2"
 ext.gebVersion      = "0.9.0"
-ext.seleniumVersion = "2.31.0"
+ext.seleniumVersion = "2.41.0"
 
 ext.drivers = ["firefox"]
 
