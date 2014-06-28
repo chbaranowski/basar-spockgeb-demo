@@ -35,12 +35,12 @@ class SellerSpec extends BasarWebSpecification {
             verify(basar).saveUser(userCaptor.capture())
             User newUser = userCaptor.value
             newUser.basarNumber == seller.basarNumber
-            newUser.name == seller.name
-            newUser.lastname == seller.lastname
-            newUser.email == seller.email
+            newUser.name        == seller.name
+            newUser.lastname    == seller.lastname
+            newUser.email       == seller.email
         where:
-            seller << [new User(basarNumber: "100", name: "Christian", lastname: "", email: ""), 
-                       new User(basarNumber: "ABC", name: "",          lastname: "", email: "")]
+            seller << [ new User(basarNumber: "100", name: "Christian", lastname: "", email: ""),
+                        new User(basarNumber: "ABC", name: "",          lastname: "", email: "")]
     }
 
 }
