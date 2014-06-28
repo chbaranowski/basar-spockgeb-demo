@@ -22,21 +22,21 @@ public class UserController {
     @Autowired
     UserResourceAssembler assembler;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",  method = RequestMethod.GET)
     @ResponseBody
     public UserResource findUser(@PathVariable Long id) {
         User user = basar.findUserWithId(id);
         return assembler.toResource(user);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/",      method = RequestMethod.GET)
     @ResponseBody
     public Iterable<UserResource> listUsers() {
         Iterable<User> users = basar.findAllUsers();
         return assembler.toResources(users);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/",      method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<UserResource> createUser(UserResource userResource) {
         User user = assembler.toUser(userResource);
@@ -44,7 +44,7 @@ public class UserController {
         return new ResponseEntity<UserResource>(assembler.toResource(user), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}",  method = RequestMethod.POST)
     @ResponseBody
     public HttpStatus updateUser(@PathVariable Long id, UserResource userResource) {
         User user = assembler.toUser(basar.findUserWithId(id), userResource);
@@ -52,10 +52,20 @@ public class UserController {
         return HttpStatus.OK;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}",  method = RequestMethod.DELETE)
     @ResponseBody
     public HttpStatus deleteUser(@PathVariable Long id) {
         basar.deleteUserWithId(id);
+        return HttpStatus.OK;
+    }
+    
+    @RequestMapping(value = "/",      method = RequestMethod.DELETE)
+    @ResponseBody
+    public HttpStatus deleteUsers() {
+        Iterable<User> users = basar.findAllUsers();
+        for (User user : users) {
+          basar.deleteUserWithId(user.getId());
+        }
         return HttpStatus.OK;
     }
 
