@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,7 +21,6 @@ import org.springframework.web.client.RestTemplate;
 import com.google.common.base.Function;
 
 import controller.UserResource;
-
 import runner.Webapp;
 
 public class BasarTest {
@@ -33,7 +33,7 @@ public class BasarTest {
     public static void startApp() throws Exception {
         webapp = new Webapp();
         webapp.start();
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
        
     }
     
