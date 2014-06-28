@@ -1,7 +1,7 @@
 # Basar Spock and Geb Demo
 
 The project contains some spock and geb demo test cases.
-To run the tests you need a the [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/home). 
+To run the tests you need the [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/home) installed. 
 
 ## Run all Tests
 
