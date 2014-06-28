@@ -11,7 +11,7 @@ ext.springVersion   = "3.2.2.RELEASE"
 ext.jettyVersion    = "8.1.8.v20121106"
 ext.groovyVersion   = "2.3.3"
 ext.gebVersion      = "0.9.3"
-ext.seleniumVersion = "2.41.0"
+ext.seleniumVersion = "2.42.0"
 
 ext.drivers = ["chrome", "firefox"]
 
