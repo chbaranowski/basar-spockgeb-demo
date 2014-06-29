@@ -78,7 +78,7 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.7'
+    gradleVersion = '1.12'
 }
 
 task console(dependsOn: 'classes', type: JavaExec) {
