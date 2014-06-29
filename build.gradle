@@ -27,7 +27,7 @@ repositories {
 
 dependencies {
 
-    groovy("org.codehaus.groovy:groovy-all:${groovyVersion}")
+    compile("org.codehaus.groovy:groovy-all:${groovyVersion}")
 
     // Spring Framework Dependencies
     compile "org.springframework:spring-web:$springVersion",
@@ -73,5 +73,5 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.4'
+    gradleVersion = '1.12'
 }
