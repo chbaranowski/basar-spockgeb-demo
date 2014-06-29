@@ -9,14 +9,13 @@ ext.gradleScriptDir   = "${rootProject.projectDir}/gradle"
 
 ext.springVersion   = "3.2.2.RELEASE"
 ext.jettyVersion    = "8.1.8.v20121106"
-ext.groovyVersion   = "2.0.6"
-ext.gebVersion      = "0.7.2"
-ext.seleniumVersion = "2.31.0"
+ext.groovyVersion   = "2.3.3"
+ext.seleniumVersion = "2.42.0"
 
-ext.drivers = ["firefox"]
+ext.drivers = ["chrome", "firefox"]
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 apply from:     "${gradleScriptDir}/eclipse.gradle"
 
@@ -28,7 +27,7 @@ repositories {
 
 dependencies {
 
-    groovy("org.codehaus.groovy:groovy-all:${groovyVersion}")
+    compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
 
     // Spring Framework Dependencies
     compile "org.springframework:spring-web:$springVersion",
@@ -70,10 +69,9 @@ dependencies {
     testCompile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
     testCompile "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
 
-    testCompile "org.codehaus.geb:geb-core:$gebVersion"
     testCompile "org.mockito:mockito-all:1.9.5"
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.4'
+    gradleVersion = '1.12'
 }

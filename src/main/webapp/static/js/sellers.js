@@ -38,17 +38,20 @@ $(document).ready(function () {
                     $("#usersBody").trigger("list.users")
                     $("#messageBox").slideUp(300).fadeIn(400).fadeOut(4000)
                     $("#messageBox").html($("<p id=\"successfullCreated\">Kunden erfogreich angelegt</p>"))
+                    $("#action").text("user-saved")
                 }
             })
         })
+        $("#action").val("show-user-edit")
         $('#userForm').modal()
     })
 
     $("#usersBody").on("render.users", function (event, users) {
         var source = $("#usersTemplate").html()
-        var template = Handlebars.compile(source)
+        var template = Handlebars.compile(source);
         $("#usersBody").html(template({"users": users}))
         $(".updateUserButton").click(function () {
+            $("#action").val("update-user-button-clicked")
             $.ajax({
                 url: $(this).val(),
                 type: "GET",
@@ -59,6 +62,7 @@ $(document).ready(function () {
             })
         })
         $(".deleteUserButton").click(function () {
+            $("#action").val("delete-user-button-clicked")
             $.ajax({
                 url: $(this).val(),
                 type: "DELETE",

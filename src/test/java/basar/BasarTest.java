@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class BasarTest {
     public static void startApp() throws Exception {
         webapp = new Webapp();
         webapp.start();
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
     }
     
     @AfterClass

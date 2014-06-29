@@ -69,6 +69,7 @@
         </td>
     </tr>
     {{/each}}
+    <script type="text/javascript">$("#action").val("user-listed");<{{!}}/script>
 </script>
 
 <script id="userFormTemplate" type="text/x-handlebars-template">
@@ -114,6 +115,10 @@
         </div>
     </div>
 </script>
+
+<form name="transition">
+    <input id="action" type="hidden" name="action" value="unknown" />
+</form>
 
 </body>
 </html>
