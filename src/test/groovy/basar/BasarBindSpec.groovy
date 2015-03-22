@@ -1,4 +1,5 @@
 package basar
+
 import data.User
 import domain.Basar
 import org.springframework.beans.factory.annotation.Autowired

@@ -1,25 +1,24 @@
 package basar
+
 import data.User
 import domain.Basar
-import org.mockito.ArgumentCaptor
 import org.springframework.beans.factory.annotation.Autowired
-
-import spock.lang.Unroll;
-
-import static org.mockito.Mockito.*
-import static org.mockito.BDDMockito.*
 
 class SellerSpec extends BasarWebSpecification {
 
     @Autowired
     Basar basar
+	
+	Basar basarMock
 
-    ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User)
+	def setup() {
+		basarMock = Mock(Basar)
+		basar.delegate = basarMock;
+	}
     
     def "create a new seller"(User seller) {
         given:
-            reset(basar)
-            given(basar.findAllUsers()).willReturn([])
+			basarMock.findAllUsers() >> []
         when:
             go "/static/sellers.html"
             waitFor { $("#newUser") }
@@ -32,12 +31,12 @@ class SellerSpec extends BasarWebSpecification {
             $("#saveUser").click()
             waitFor { $("#successfullCreated") }
         then:
-            verify(basar).saveUser(userCaptor.capture())
-            User newUser = userCaptor.value
-            newUser.basarNumber == seller.basarNumber
-            newUser.name        == seller.name
-            newUser.lastname    == seller.lastname
-            newUser.email       == seller.email
+			1 * basarMock.saveUser({ newUser ->  
+				newUser.basarNumber == seller.basarNumber
+				newUser.name        == seller.name
+				newUser.lastname    == seller.lastname
+				newUser.email       == seller.email
+			})
         where:
             seller << [ new User(basarNumber: "100", name: "Christian", lastname: "", email: ""),
                         new User(basarNumber: "ABC", name: "",          lastname: "", email: "")]

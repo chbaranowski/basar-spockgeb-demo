@@ -4,7 +4,6 @@ import groovy.sql.Sql
 
 import javax.sql.DataSource;
 
-import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import spock.lang.Shared;
@@ -15,8 +14,6 @@ import domain.PriceUtils;
 import data.Position;
 import data.User;
 import data.UserRepository;
-
-import static org.mockito.Mockito.*;
 
 class BasarSpec extends BasarWebSpecification {
 

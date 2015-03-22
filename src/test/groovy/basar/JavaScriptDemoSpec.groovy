@@ -5,20 +5,23 @@ import domain.Basar
 import org.springframework.beans.factory.annotation.Autowired
 import spock.lang.Ignore
 
-import static org.mockito.Mockito.when
-
-
 class JavaScriptDemoSpec extends BasarWebSpecification {
 
     @Autowired
-    Basar basarMock
+    Basar basar
+	
+	Basar basarMock
+	
+	def setup() {
+		basarMock = Mock(Basar)
+		basar.delegate = basarMock;
+	}
 
     def "create a new seller"() {
         given:
-            when(basarMock.findAllUsers()).thenReturn([
+			basarMock.findAllUsers() >> [
                 new User(id: 1L, basarNumber: "100", name: "Christian"),
-                new User(id: 2L, basarNumber: "101", name: "Martin"),
-            ])
+                new User(id: 2L, basarNumber: "101", name: "Martin")]
         when:
             go "/static/sellers.html"
             waitFor { $("#newUser") }

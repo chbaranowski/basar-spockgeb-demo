@@ -9,9 +9,10 @@ ext.gradleScriptDir     = "${rootProject.projectDir}/gradle"
 
 ext.springVersion   = "3.2.2.RELEASE"
 ext.jettyVersion    = "8.1.8.v20121106"
-ext.groovyVersion   = "2.3.3"
-ext.gebVersion      = "0.9.3"
-ext.seleniumVersion = "2.42.0"
+ext.groovyVersion   = "2.3.9"
+ext.gebVersion      = "0.10.0"
+ext.seleniumVersion = "2.45.0"
+ext.spockVersion 	= "1.0-groovy-2.3"
 
 ext.drivers = ["chrome", "firefox"]
 
@@ -47,7 +48,9 @@ dependencies {
 
     compile("org.eclipse.jetty:jetty-server:${jettyVersion}")
     compile("org.eclipse.jetty:jetty-webapp:${jettyVersion}")
-    testCompile('org.spockframework:spock-core:0.7-groovy-2.0')
+	
+	// Spock Test Framework
+    testCompile('org.spockframework:spock-core:${spockVersion}')
 
     // HSQL DB
     runtime "org.hsqldb:hsqldb:2.2.8"
@@ -72,7 +75,6 @@ dependencies {
     }
 
     testCompile "org.gebish:geb-spock:$gebVersion"
-    testCompile "org.mockito:mockito-all:1.9.5"
 
     testCompile "com.seitenbau.utils:gebbind:0.1.0"
 }
