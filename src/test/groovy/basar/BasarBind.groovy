@@ -5,7 +5,7 @@ import geb.bind.*
 class BasarBind extends Bind {
 
     def start() {
-        go "/static/basar.html"
+        go "/basar.html"
         waitFor { title == "Basar" }
     }
 

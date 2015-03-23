@@ -4,7 +4,7 @@ import geb.Page;
 
 class BasarPage extends Page {
 
-    static url = "/static/basar.html"
+    static url = "/basar.html"
 
     static at = { title == "Basar" }
 

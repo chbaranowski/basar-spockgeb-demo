@@ -1,5 +1,3 @@
-import org.openqa.selenium.chrome.ChromeDriver
-
-driver  = { new ChromeDriver() }
-
-baseUrl = "http://localhost:8081/"
+driver  = { 
+  new org.openqa.selenium.chrome.ChromeDriver() 
+}

@@ -1,18 +1,35 @@
 package basar
 
-import data.User
-import domain.Basar
+import geb.spock.GebSpec;
+
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.IntegrationTest;
+import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import domain.MockingContext;
+import basar.data.User;
+import basar.domain.Basar;
 import spock.lang.Ignore
 
-class JavaScriptDemoSpec extends BasarWebSpecification {
+@ContextConfiguration(loader = SpringApplicationContextLoader, classes = [MockingContext])
+@WebAppConfiguration
+@IntegrationTest('server.port:0')
+class JavaScriptDemoSpec extends GebSpec {
 
     @Autowired
     Basar basar
 	
+	@Value('${local.server.port}')
+	int port
+	
 	Basar basarMock
 	
 	def setup() {
+		browser.baseUrl = "http://localhost:${port}"
 		basarMock = Mock(Basar)
 		basar.delegate = basarMock;
 	}
@@ -23,7 +40,7 @@ class JavaScriptDemoSpec extends BasarWebSpecification {
                 new User(id: 1L, basarNumber: "100", name: "Christian"),
                 new User(id: 2L, basarNumber: "101", name: "Martin")]
         when:
-            go "/static/sellers.html"
+            go "/sellers.html"
             waitFor { $("#newUser") }
             def users = js.exec('''
                         var users = []

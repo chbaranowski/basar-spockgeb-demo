@@ -1,24 +1,35 @@
 package basar
 
-import org.springframework.beans.factory.annotation.Autowired;
+import geb.spock.GebSpec;
 
-import data.User;
-import data.UserRepository;
-import domain.Basar;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.IntegrationTest;
+import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import basar.data.User;
+import basar.data.UserRepository;
+import basar.domain.Basar;
 import spock.lang.Stepwise;
 
+@ContextConfiguration(loader = SpringApplicationContextLoader, classes = [BasarApplication])
+@WebAppConfiguration
+@IntegrationTest('server.port:0')
 @Stepwise
-class ComplexCartSpec extends BasarWebSpecification {
-    
-    @Override
-    def enviorment() { "production" }
+class ComplexCartSpec extends GebSpec {
     
     def testUsers = [new User(basarNumber: "100")]
     
     @Autowired
     Basar basar
+	
+	@Value('${local.server.port}')
+	int port
     
     def setup() {
+		browser.baseUrl = "http://localhost:${port}"
         testUsers.each {
             basar.saveUser(it)
         }
