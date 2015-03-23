@@ -1,23 +1,23 @@
 package basar.web;
 
+import static basar.domain.PriceUtils.formatPriceLongToString;
+import static basar.domain.PriceUtils.formatPriceToLong;
+
+import java.io.Serializable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import basar.data.Position;
 import basar.domain.Basar;
 
-import java.io.Serializable;
-
-import static basar.domain.PriceUtils.formatPriceLongToString;
-import static basar.domain.PriceUtils.formatPriceToLong;
-
-@Controller
+@RestController
 @RequestMapping(value = "/shopping/", produces = "application/json")
 public class ShoppingController implements Serializable {
 
