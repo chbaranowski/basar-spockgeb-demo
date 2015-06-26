@@ -20,10 +20,10 @@ apply plugin: "eclipse"
 apply plugin: "idea"
 apply plugin: "spring-boot"
 
-ext.groovyVersion   = "2.3.10"
+ext.groovyVersion   = "2.4.3"
 ext.gebVersion      = "0.10.0"
 ext.seleniumVersion = "2.45.0"
-ext.spockVersion 	= "1.0-groovy-2.3"
+ext.spockVersion 	= "1.0-groovy-2.4"
 
 ext.drivers = ["chrome", "firefox"]
 
@@ -52,8 +52,8 @@ dependencies {
     }
 
 	// Spock Test Framework
-	testCompile('org.spockframework:spock-core:${spockVersion}')
-	testCompile('org.spockframework:spock-spring:1.0-groovy-2.3')
+	testCompile("org.spockframework:spock-core:${spockVersion}")
+	testCompile("org.spockframework:spock-spring:${spockVersion}")
 	//testCompile('com.nagternal:spock-genesis:0.1.0')
 	
 	// Geb
