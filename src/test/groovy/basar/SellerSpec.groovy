@@ -40,7 +40,7 @@ class SellerSpec extends GebSpec {
             go "/sellers.html"
             waitFor { $("#newUser") }
             $("#newUser").click()
-            waitFor { $("#basarNumber") }
+            waitFor { $("#basarNumber").value("") }
             $("#basarNumber").value(seller.basarNumber)
             $("#name").value(seller.name)
             $("#lastname").value(seller.lastname)

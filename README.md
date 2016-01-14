@@ -23,6 +23,14 @@ When the demo webapp is running, the webapp provides two simple pages under
  - http://localhost:8081/static/sellers.html
  - http://localhost:8081/static/basar.html
  
+## Web Drivers Setup
+
+To use chrome the chrome driver must be installed see
+https://sites.google.com/a/chromium.org/chromedriver/
+ 
+To use IE as browser the ie driver must be installed see
+https://code.google.com/p/selenium/wiki/InternetExplorerDriver 
+ 
 ## Demo Spock Geb Tests
 
 The demo tests can be found in the folder src/test/groovy in the package basar.
