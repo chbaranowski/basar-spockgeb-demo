@@ -21,8 +21,8 @@ apply plugin: "idea"
 apply plugin: "spring-boot"
 
 ext.groovyVersion   = "2.4.6"
-ext.gebVersion      = "0.12.2"
-ext.seleniumVersion = "2.49.0"
+ext.gebVersion      = "0.13.1"
+ext.seleniumVersion = "2.53.0"
 ext.spockVersion 	= "1.0-groovy-2.4"
 
 ext.drivers = ["chrome", "firefox", "ie" ]
