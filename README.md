@@ -17,11 +17,11 @@ To run the demo Basar application invoke the Java main class:
 	
 or run the the main class via gradle:
 
-	./gradlew run
+	./gradlew bootRun
 	
 When the demo webapp is running, the webapp provides two simple pages under
- - http://localhost:8081/static/sellers.html
- - http://localhost:8081/static/basar.html
+ - http://localhost:8080/sellers.html
+ - http://localhost:8080/basar.html
  
 ## Web Drivers Setup
 
