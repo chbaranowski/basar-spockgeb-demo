@@ -34,7 +34,7 @@ repositories {
 
 dependencies {
 	// Groovy
-    compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
+    compile("org.codehaus.groovy:groovy-all:$groovyVersion")
 
     // Spring Framework Dependencies
 	compile("org.springframework.boot:spring-boot-starter")
@@ -48,17 +48,16 @@ dependencies {
 
     // Selenium Drivers
     drivers.each { driver ->
-        testCompile "org.seleniumhq.selenium:selenium-$driver-driver:$seleniumVersion"
+        testCompile("org.seleniumhq.selenium:selenium-$driver-driver:$seleniumVersion")
     }
 
 	// Spock Test Framework
-	testCompile("org.spockframework:spock-core:${spockVersion}")
-	testCompile("org.spockframework:spock-spring:${spockVersion}")
-	//testCompile('com.nagternal:spock-genesis:0.1.0')
+	testCompile("org.spockframework:spock-core:$spockVersion")
+	testCompile("org.spockframework:spock-spring:$spockVersion")
 	
 	// Geb
-    testCompile "org.gebish:geb-spock:$gebVersion"
-    testCompile "com.seitenbau.utils:gebbind:0.1.0"
+    testCompile("org.gebish:geb-spock:$gebVersion")
+    testCompile("com.seitenbau.utils:gebbind:0.1.0")
 }
 
 task wrapper(type: Wrapper) {
