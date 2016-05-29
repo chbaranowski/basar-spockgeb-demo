@@ -20,6 +20,5 @@ public interface Basar {
     void saveUser(User user);
 
     void deleteUserWithId(Long id);
-    
 
 }
