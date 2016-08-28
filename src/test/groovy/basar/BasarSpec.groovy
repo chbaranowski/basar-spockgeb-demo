@@ -6,9 +6,9 @@ import groovy.sql.Sql
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.context.embedded.LocalServerPort;
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -21,9 +21,8 @@ import basar.domain.PriceUtils;
 import spock.lang.Shared;
 import spock.lang.Unroll;
 
-@ContextConfiguration(loader = SpringApplicationContextLoader, classes = [BasarApplication])
-@WebAppConfiguration
-@IntegrationTest('server.port:0')
+@ContextConfiguration(classes = [BasarApplication])
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BasarSpec extends GebSpec {
 
     User testUser
@@ -31,7 +30,7 @@ class BasarSpec extends GebSpec {
     @Autowired
     Basar basar
 	
-	@Value('${local.server.port}')
+	@LocalServerPort
 	int port
 
     def setup() {

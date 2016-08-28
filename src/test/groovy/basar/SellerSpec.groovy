@@ -3,9 +3,9 @@ package basar
 import geb.spock.GebSpec;
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.context.embedded.LocalServerPort;
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -14,17 +14,16 @@ import domain.MockingContext;
 import basar.data.User
 import basar.domain.Basar
 
-@ContextConfiguration(loader = SpringApplicationContextLoader, classes = [MockingContext])
-@WebAppConfiguration
-@IntegrationTest('server.port:0')
+@ContextConfiguration(classes = [MockingContext])
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SellerSpec extends GebSpec {
 
     @Autowired
     Basar basar
 	
 	Basar basarMock
-	
-	@Value('${local.server.port}')
+
+	@LocalServerPort	
 	int port
 
 	def setup() {

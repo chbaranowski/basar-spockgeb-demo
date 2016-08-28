@@ -1,17 +1,39 @@
+import io.github.bonigarcia.wdm.ChromeDriverManager
+import io.github.bonigarcia.wdm.InternetExplorerDriverManager
+import io.github.bonigarcia.wdm.PhantomJsDriverManager
+
+import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.phantomjs.PhantomJSDriver
+import org.openqa.selenium.ie.InternetExplorerDriver
+
 waiting {
 	timeout = 10
 }
 
-driver = {
-	// Setup Firefox Driver
-	new org.openqa.selenium.firefox.FirefoxDriver()
+// Use Firefox as the default driver
+driver = { new FirefoxDriver() }
+
+// specify environment via -Dgeb.env=...
+environments {
 	
-	// Setup Chrome Driver
-	// System.setProperty('webdriver.chrome.driver', '/Users/developer/tools/chromedriver/chromedriver')
-	// new org.openqa.selenium.chrome.ChromeDriver() 
+	chrome {
+		ChromeDriverManager.getInstance().setup()
+		driver = { new ChromeDriver() }
+	}
 	
-	// Setup IE Driver
-	// System.setProperty("webdriver.ie.driver", new File("C:/dev/Selenium/iexploredriver.exe").getAbsolutePath())
-	// new org.openqa.selenium.ie.InternetExplorerDriver()
+	firefox {
+		driver = { new FirefoxDriver() }
+	}
+	
+	phantomJs {
+		PhantomJsDriverManager.getInstance().setup();
+		driver = { new PhantomJSDriver() }
+	}
+	
+	ie {
+		InternetExplorerDriverManager.getInstance().setup();
+		driver = { new InternetExplorerDriver() }
+	}
 	
 }

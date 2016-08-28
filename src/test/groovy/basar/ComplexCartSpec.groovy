@@ -3,9 +3,9 @@ package basar
 import geb.spock.GebSpec;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.context.embedded.LocalServerPort;
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -14,9 +14,8 @@ import basar.data.UserRepository;
 import basar.domain.Basar;
 import spock.lang.Stepwise;
 
-@ContextConfiguration(loader = SpringApplicationContextLoader, classes = [BasarApplication])
-@WebAppConfiguration
-@IntegrationTest('server.port:0')
+@ContextConfiguration(classes = [BasarApplication])
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Stepwise
 class ComplexCartSpec extends GebSpec {
     
@@ -25,7 +24,7 @@ class ComplexCartSpec extends GebSpec {
     @Autowired
     Basar basar
 	
-	@Value('${local.server.port}')
+	@LocalServerPort
 	int port
     
     def setup() {
