@@ -43,6 +43,14 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-hateoas")
 	testCompile("org.springframework.boot:spring-boot-starter-test")
 	
+	// WebJars
+	compile("org.webjars:bootstrap:2.3.2")
+	compile("org.webjars:jquery:1.9.1")
+	compile("org.webjars:handlebars:4.0.5")
+	
+	compile("ro.isdc.wro4j:wro4j-core:1.8.0")
+	compile("ro.isdc.wro4j:wro4j-extensions:1.8.0")
+	
     // HSQL DB
     runtime "org.hsqldb:hsqldb"
 
