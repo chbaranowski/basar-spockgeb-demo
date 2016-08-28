@@ -1,60 +1,56 @@
-# Basar Spock and Geb Demo
+# Spock and Geb Demo
 
-The project contains some spock and geb demo test cases.
-To run the tests you need the [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/home) installed. 
+The project contains some sample spock and geb tests. 
 
-## Run all Tests
+##  Selenium Webdriver Binaries Management
+The Webdriver binaries are automatically downloaded by using a small library called WebDriverManager more details see <https://github.com/bonigarcia/webdrivermanager>.
+
+## Run Tests
 
 The spock geb tests can be run via gradle:
 
 	./gradlew test
-
-## Run the Demo Application
-
-To run the demo Basar application invoke the Java main class:
 	
-	runner.BasarApplication
+For running the tests in a specific browser invoke
+- gradlew firefoxTest (default)
+- gradlew chromeTest
+- gradlew ieTest
+- gradlew phantomJsTest
+
+## Run Web Application
+
+To run the demo web application invoke the Java main class:
+	
+	basar.BasarApplication
 	
 or run the the main class via gradle:
 
 	./gradlew bootRun
 	
-When the demo webapp is running, the webapp provides two simple pages under
- - http://localhost:8080/sellers.html
- - http://localhost:8080/basar.html
- 
-## Web Drivers Setup
-
-To use chrome the chrome driver must be installed see
-https://sites.google.com/a/chromium.org/chromedriver/
- 
-To use IE as browser the ie driver must be installed see
-https://code.google.com/p/selenium/wiki/InternetExplorerDriver 
- 
+When the demo web application is running, the web application provides two simple pages under
+ - Management of sellers <http://localhost:8080/sellers.html>
+ - Basar Cash Point <http://localhost:8080/basar.html>
+  
 ## Demo Spock Geb Tests
 
 The demo tests can be found in the folder src/test/groovy in the package basar.
 There are three demo tests:
- - UI integration test - https://github.com/tux2323/basar-spockgeb-demo/blob/master/src/test/groovy/basar/SellerSpec.groovy
- - n-n system test - https://github.com/tux2323/basar-spockgeb-demo/blob/master/src/test/groovy/basar/BasarSpec.groovy
- - n-n system test as stepwise test - https://github.com/tux2323/basar-spockgeb-demo/blob/master/src/test/groovy/basar/ComplexCartSpec.groovy
+ - UI integration test - <https://github.com/tux2323/basar-spockgeb-demo/blob/master/src/test/groovy/basar/SellerSpec.groovy>
+ - n-n system test - <https://github.com/tux2323/basar-spockgeb-demo/blob/master/src/test/groovy/basar/BasarSpec.groovy>
+ - n-n system test as stepwise spock test - <https://github.com/tux2323/basar-spockgeb-demo/blob/master/src/test/groovy/basar/ComplexCartSpec.groovy>
 
 ## Slides
 
-There are a few slides for the demo on slideshare:
- * http://de.slideshare.net/tux2323/bdd-behavior-driven-development-webapps-mit-groovy-spock-und-geb
- * http://de.slideshare.net/tux2323/spock-and-geb-in-action
- * http://de.slideshare.net/tux2323/spock-and-geb-17517425
+There are a few slides around the demo on slideshare:
+ * <http://de.slideshare.net/tux2323/bdd-behavior-driven-development-webapps-mit-groovy-spock-und-geb>
+ * <http://de.slideshare.net/tux2323/spock-and-geb-in-action>
+ * <http://de.slideshare.net/tux2323/spock-and-geb-17517425>
  
 ## Links
 
-- Spock
-  http://spockframework.org
-- Spock GitHub
-  https://github.com/spockframework
 - Spock Framework Reference Documentation
-  http://docs.spockframework.org/en/latest/
+  <http://docs.spockframework.org/en/latest/>
 - Geb
-  http://www.gebish.org/
-- GebBind
-  https://github.com/tux2323/gebbind
+  <http://www.gebish.org/>
+- WebDriverManager
+  <https://github.com/bonigarcia/webdrivermanager>
